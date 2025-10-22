@@ -1,16 +1,20 @@
 import http from 'http';
 import fs from 'fs';
 
-const server =http.createServer((req, res) => {
+const server = http.createServer((req, res) => {
 
-    console.log(req)
+    //console.log(req)
+    const url = req.url;
 
-    res.setHeader("200", {'Content-Type': 'Json'});
-    res.write('<html>');
-    res.write('<head><title>My First Page</title></head>');
-    res.write('<body><h1>Hello from my Node.js Server!</h1></body>');
-    res.write('</html>');
-    res.end();
+    if (url === '/') {
+        res.write('<html>');
+        res.write('<head>This is home page</head>');
+        res.end();
+    } else if (url === '/message' ) {
+        res.write('<html>');
+        res.write('<head>Enter Message</head>');
+        res.end();
+    }
 })
 
 server.listen(3001);
